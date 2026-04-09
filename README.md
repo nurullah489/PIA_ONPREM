@@ -10,6 +10,7 @@ UPDATE BASE DIR PATH IN
 	* main.py
 	* ingest.py
 	* scraper.py
+	and the two modefile in model folder
 
 activate the env calling .\.venv\Scripts\Activate.ps1 
 
