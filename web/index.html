@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIA - Pubali Intelligent Assistant</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        #chat-container { width: 400px; height: 600px; background: white; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden; }
+        #header { background: #004a99; color: white; padding: 20px; text-align: center; font-weight: bold; font-size: 1.2em; }
+        #messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+        .message { max-width: 80%; padding: 10px 15px; border-radius: 18px; font-size: 0.9em; line-height: 1.4; }
+        .user { align-self: flex-end; background: #004a99; color: white; border-bottom-right-radius: 2px; }
+        .bot { align-self: flex-start; background: #e4e6eb; color: #333; border-bottom-left-radius: 2px; }
+        #input-area { border-top: 1px solid #eee; padding: 15px; display: flex; gap: 10px; }
+        #user-input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 10px 15px; outline: none; }
+        #send-btn { background: #004a99; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="header">PIA Assistant</div>
+        <div id="messages">
+            <div class="message bot">Hello! I am PIA. How can I help you with Pubali Bank services today?</div>
+        </div>
+        <div id="input-area">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button id="send-btn">➔</button>
+        </div>
+    </div>
+
+    <script>
+        const msgContainer = document.getElementById('messages');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        async function sendMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            // Add User Message
+            appendMessage(text, 'user');
+            userInput.value = '';
+
+            // Call Flask Backend
+            try {
+                const response = await fetch('http://127.0.0.1:5000/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+                const data = await response.json();
+                appendMessage(data.reply, 'bot');
+            } catch (e) {
+                appendMessage("Sorry, I'm having trouble connecting to my brain.", 'bot');
+            }
+        }
+
+        function appendMessage(text, side) {
+            const div = document.createElement('div');
+            div.className = `message ${side}`;
+            div.innerText = text;
+            msgContainer.appendChild(div);
+            msgContainer.scrollTop = msgContainer.scrollHeight;
+        }
+
+        sendBtn.onclick = sendMessage;
+        userInput.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
+    </script>
+</body>
+</html>
