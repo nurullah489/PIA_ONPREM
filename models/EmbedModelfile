@@ -1,3 +1,3 @@
-FROM "F:/python_2026/chatbot/PIA_ONPREM/models/nomic-embed-text-v1.5.Q5_K_M.gguf"
+FROM "../PIA_ONPREM/models/nomic-embed-text-v1.5.Q5_K_M.gguf"
 
 PARAMETER num_ctx 8192
