@@ -1,5 +1,5 @@
 # PIA_ONPREM
-A personal intelligent Assistant
+A personal intelligent Assistant (Full On premise)
 
 This is the very basic of a personal intelligent assistant. you can make this agent more intelligent providing more web or document (txt/pdf) source 
 
