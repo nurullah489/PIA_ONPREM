@@ -1,5 +1,5 @@
 # Use FORWARD SLASHES for paths in the Modelfile, even on Windows
-FROM "F:/python_2026/chatbot/PIA_ONPREM/models/llama-3.2-3b-instruct-q4_k_m.gguf"
+FROM ".../PIA_ONPREM/models/llama-3.2-3b-instruct-q4_k_m.gguf"
 
 # Set response behavior
 PARAMETER temperature 0.1
