@@ -36,24 +36,23 @@ PIA_ONPREM/
 │
 ├── requirements.txt
 └── README.md
+
 Setup Instructions
 1. Create Virtual Environment
 
 Create a virtual environment named .venv inside the PIA_ONPREM project directory.
-
 python -m venv .venv
+
 2. Activate the Virtual Environment
-
 Activate the environment using PowerShell:
-
 .\.venv\Scripts\Activate.ps1
-3. Install Required Packages
 
+3. Install Required Packages
 Install all dependencies from requirements.txt:
 
 pip install -r requirements.txt
-Configure Project Paths
 
+Configure Project Paths
 Update the base directory paths in the following files before running the project:
 
 src/main.py
@@ -70,33 +69,29 @@ LLM Model
 llama-3.2-3b-instruct-q4_k_m.gguf
 Embedding Model
 nomic-embed-text-v1.5.Q5_K_M.gguf
-Data Preparation
-1. Collect Web Data
 
+Data Preparation
+
+1. Collect Web Data
 Run the scraper to collect raw data for the vector database.
 
 python src/tools/scraper.py
 2. Add Local Documents
 
 Place all .txt and .pdf files inside:
-
 PIA_ONPREM/data/raw_docs/
-3. Populate the Vector Database
 
+3. Populate the Vector Database
 Run the ingestion script to process documents and populate the vector database.
 
 python src/tools/ingest.py
+
 Run the Application
-
-Start the assistant application:
-
 python src/app.py
+
 Web Interface
-
 The project also includes a simple frontend interface:
-
 web/index.html
-
 You can open this file directly in your browser if needed.
 
 Notes
@@ -104,6 +99,7 @@ Ensure model paths are configured correctly before running the application.
 Model files are not included in the repository.
 Response quality depends on the quality and amount of ingested data.
 The project is designed to run fully on-premise without external cloud dependencies.
+
 Future Improvements
 Multi-agent architecture
 Voice interaction
@@ -113,6 +109,7 @@ Better UI/UX
 Streaming responses
 API integrations
 Advanced RAG pipelines
-License
 
+License
 This project is intended for personal and educational purposes.
+
