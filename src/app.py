@@ -12,7 +12,7 @@ from main import initialize_pia
 from langchain_core.messages import HumanMessage, AIMessage
 
 # --- 1. Initialize FastAPI ---
-app = FastAPI(title="PIA - Pubali Intelligent Assistant API")
+app = FastAPI(title="PIA - Personal Intelligent Assistant API")
 
 # --- 2. CORS Setup ---
 # Essential for allowing your browser to talk to the local API
