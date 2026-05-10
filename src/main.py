@@ -18,8 +18,9 @@ BASE_DIR = r"...\PIA_ONPREM"
 DB_PATH = os.path.join(BASE_DIR, "data", "vector_db")
 
 def initialize_pia():
-    print("--- Initializing PIA (Pubali Bank Assistant) ---")
+    print("--- Initializing PIA (Personal Intelligent Assistant) ---")
 
+   # --- ollama must be running on your local system on default port 11434 
     embeddings = OllamaEmbeddings(
         model="nomic-embed-text",
         base_url="http://localhost:11434"
@@ -34,7 +35,7 @@ def initialize_pia():
         embedding_function=embeddings
     )
 
-    # Note: Using your 'pia-brain' which points to your llama-3.2 GGUF
+    # Note: Using 'pia-brain' which points to llama-3.2 GGUF
     llm = ChatOllama(
         model="pia-brain",
         base_url="http://localhost:11434",
